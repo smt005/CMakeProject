@@ -7,3 +7,6 @@
 [submodule "Source/Game"]
 	path = Source/Game
 	url = https://github.com/smt005/CMakeProject_Game.git
+[submodule "Source/ThirdParty"]
+	path = Source/ThirdParty
+	url = https://github.com/smt005/CMakeProject_ThirdParty.git
