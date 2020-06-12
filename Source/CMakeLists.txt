@@ -21,6 +21,12 @@ set(GAME_NAME Game)
 set(GAME_DIR "${PROJECT_DIR}/${GAME_NAME}")
 set(GAME_SOURCE "${GAME_DIR}/Source")
 
+# jsoncpp
+set(JSONCPP_NAME jsoncpp)
+set(JSONCPP_DIR "${ENGINE_DIR}/ThirdParty/jsoncpp")
+set(JSONCPP_INCLUDES "${ENGINE_DIR}/ThirdParty/jsoncpp/include")
+set(JSONCPP_SOURCE "${ENGINE_DIR}/ThirdParty/jsoncpp/src")
+
 # Создание
 
 project(${PROJECT_NAME})											# Соглашение
@@ -39,3 +45,9 @@ include_directories(${GAME_SOURCE})
 add_subdirectory(${GAME_DIR})
 target_link_libraries(${PROJECT_NAME} ${GAME_NAME})
 link_directories(${GAME_DIR})
+
+# jsoncpp
+include_directories(${JSONCPP_SOURCE})
+add_subdirectory(${JSONCPP_SOURCE})
+target_link_libraries(${PROJECT_NAME} ${JSONCPP_NAME})
+link_directories(${JSONCPP_SOURCE})
