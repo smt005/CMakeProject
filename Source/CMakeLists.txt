@@ -6,6 +6,8 @@ set(PROJECT_NAME Windows)
 set(PROJECT_INCLUDE "${PROJECT_DIR}/Engine/Platform/Win/main.h")
 set(PROJECT_SOURCE "${PROJECT_DIR}/Engine/Platform/Win/main.cpp")
 
+# defines
+add_definitions(-DWIN_PLATFORM)
 #
 set(CMAKE_CXX_STANDARD 17)
 
