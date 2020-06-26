@@ -24,8 +24,12 @@ set(GAME_SOURCE "${GAME_DIR}/Source")
 # jsoncpp
 set(JSONCPP_NAME jsoncpp)
 set(JSONCPP_DIR "${ENGINE_DIR}/ThirdParty/jsoncpp")
-set(JSONCPP_INCLUDES "${ENGINE_DIR}/ThirdParty/jsoncpp/include")
-set(JSONCPP_SOURCE "${ENGINE_DIR}/ThirdParty/jsoncpp/src")
+set(JSONCPP_INCLUDES "${JSONCPP_DIR}/include")
+set(JSONCPP_SOURCE "${JSONCPP_DIR}/src")
+set(JSONCPP_LIB "${PROJECT_DIR}/../build/Win/Engine/ThirdParty/jsoncpp/src/lib_json")
+
+FILE(GLOB_RECURSE JSONCPP_ALL_INCLUDES ${JSONCPP_INCLUDES}/*.h)
+FILE(GLOB_RECURSE JSONCPP_ALL_SOURCES ${JSONCPP_SOURCE}/*.cpp)
 
 # Создание
 
@@ -47,7 +51,8 @@ target_link_libraries(${PROJECT_NAME} ${GAME_NAME})
 link_directories(${GAME_DIR})
 
 # jsoncpp
-include_directories(${JSONCPP_SOURCE})
+include_directories(${JSONCPP_INCLUDES})
+link_directories(${JSONCPP_LIB})
+add_library(${JSONCPP_NAME} STATIC ${JSONCPP_ALL_SOURCES})
 add_subdirectory(${JSONCPP_SOURCE})
 target_link_libraries(${PROJECT_NAME} ${JSONCPP_NAME})
-link_directories(${JSONCPP_SOURCE})
