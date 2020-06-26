@@ -23,6 +23,10 @@ set(GAME_NAME Game)
 set(GAME_DIR "${PROJECT_DIR}/${GAME_NAME}")
 set(GAME_SOURCE "${GAME_DIR}/Source")
 
+# ThirdParty
+#glm
+set(GLM_INCLUDES "${ENGINE_DIR}/ThirdParty/glm")
+
 # jsoncpp
 set(JSONCPP_NAME jsoncpp)
 set(JSONCPP_DIR "${ENGINE_DIR}/ThirdParty/jsoncpp")
@@ -51,6 +55,9 @@ include_directories(${GAME_SOURCE})
 add_subdirectory(${GAME_DIR})
 target_link_libraries(${PROJECT_NAME} ${GAME_NAME})
 link_directories(${GAME_DIR})
+
+#glm
+include_directories(${GLM_INCLUDES})
 
 # jsoncpp
 include_directories(${JSONCPP_INCLUDES})
