@@ -37,6 +37,16 @@ set(JSONCPP_LIB "${PROJECT_DIR}/../build/Win/Engine/ThirdParty/jsoncpp/src/lib_j
 FILE(GLOB_RECURSE JSONCPP_ALL_INCLUDES ${JSONCPP_INCLUDES}/*.h)
 FILE(GLOB_RECURSE JSONCPP_ALL_SOURCES ${JSONCPP_SOURCE}/*.cpp)
 
+# GLFW
+set(GLFW_NAME glfw)
+set(GLFW_DIR "${ENGINE_DIR}/ThirdParty/glfw")
+set(GLFW_INCLUDES "${GLFW_DIR}/include")
+set(GLFW_SOURCE "${GLFW_DIR}/src")
+set(GLFW_LIB "${PROJECT_DIR}/../build/Win/Engine/ThirdParty/glfw/src")
+
+FILE(GLOB_RECURSE GLFW_ALL_INCLUDES ${GLFW_INCLUDES}/*.h)
+FILE(GLOB_RECURSE GLFW_ALL_SOURCES ${GLFW_SOURCE}/*.cpp)
+
 # Создание
 
 project(${PROJECT_NAME})											# Соглашение
@@ -65,3 +75,10 @@ link_directories(${JSONCPP_LIB})
 add_library(${JSONCPP_NAME} STATIC ${JSONCPP_ALL_SOURCES})
 add_subdirectory(${JSONCPP_SOURCE})
 target_link_libraries(${PROJECT_NAME} ${JSONCPP_NAME})
+
+# GLFW
+include_directories(${GLFW_INCLUDES})
+link_directories(${GLFW_LIB})
+#add_library(${GLFW_NAME} STATIC ${GLFW_ALL_SOURCES})
+add_subdirectory(${GLFW_DIR})
+target_link_libraries(${PROJECT_NAME} ${GLFW_NAME})
