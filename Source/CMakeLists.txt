@@ -47,6 +47,18 @@ set(GLFW_LIB "${PROJECT_DIR}/../build/Win/Engine/ThirdParty/glfw/src")
 FILE(GLOB_RECURSE GLFW_ALL_INCLUDES ${GLFW_INCLUDES}/*.h)
 FILE(GLOB_RECURSE GLFW_ALL_SOURCES ${GLFW_SOURCE}/*.cpp)
 
+# GLEW
+set(GLEW_NAME glew)
+#set(GLEW_S_NAME glew_s)
+set(GLEW_DIR "${ENGINE_DIR}/ThirdParty/glew")
+set(GLEW_CMAKE_DIR "${GLEW_DIR}/build/cmake")
+set(GLEW_INCLUDES "${GLEW_DIR}/include")
+set(GLEW_SOURCE "${GLEW_DIR}/src")
+set(GLEW_LIB "${PROJECT_DIR}/../lib")
+
+FILE(GLOB_RECURSE GLEW_ALL_INCLUDES ${GLEW_INCLUDES}/*.h)
+FILE(GLOB_RECURSE GLEW_ALL_SOURCES ${GLEW_SOURCE}/*.cpp)
+
 # Создание
 
 project(${PROJECT_NAME})											# Соглашение
@@ -82,3 +94,16 @@ link_directories(${GLFW_LIB})
 #add_library(${GLFW_NAME} STATIC ${GLFW_ALL_SOURCES})
 add_subdirectory(${GLFW_DIR})
 target_link_libraries(${PROJECT_NAME} ${GLFW_NAME})
+
+# GLEW
+include_directories(${GLEW_INCLUDES})
+link_directories(${GLEW_LIB})
+#add_library(${GLEW_NAME_S STATIC ${GLEW_ALL_SOURCES})
+#add_library(${GLEW_NAME} SHARED ${GLEW_ALL_SOURCES})
+add_subdirectory(${GLEW_CMAKE_DIR})
+#target_link_libraries(${PROJECT_NAME} ${GLEW_NAME})
+set_target_properties( ${GLEW_NAME}
+    PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY "${PROJECT_DIR}/../build/Win"
+)
+target_link_libraries(${PROJECT_NAME} ${GLEW_NAME})
