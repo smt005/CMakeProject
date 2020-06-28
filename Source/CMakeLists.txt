@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.15) # Проверка версии CMake.
 # Проект
 set(PROJECT_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 set(PROJECT_NAME Windows)
-set(PROJECT_INCLUDE "${PROJECT_DIR}/Engine/Platform/Win/main.h")
+#set(PROJECT_INCLUDE "${PROJECT_DIR}/Engine/Platform/Win/main.h")
 set(PROJECT_SOURCE "${PROJECT_DIR}/Engine/Platform/Win/main.cpp")
 
 # defines
@@ -64,8 +64,9 @@ set(FREEIMAGE_INCLUDES "${FREEIMAGE_DIR}/Source")
 
 # Создание
 
-project(${PROJECT_NAME})											# Соглашение
-add_executable(${PROJECT_NAME} ${PROJECT_INCLUDE} ${PROJECT_SOURCE})# Создает исполняемый файл с именем main, из исходника main.cpp
+project(${PROJECT_NAME})
+#add_executable(${PROJECT_NAME} ${PROJECT_INCLUDE} ${PROJECT_SOURCE})
+add_executable(${PROJECT_NAME} ${PROJECT_SOURCE})
 
 # Библиотеки
 
