@@ -4,7 +4,12 @@ cmake_minimum_required(VERSION 3.15) # Проверка версии CMake.
 set(PROJECT_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 set(PROJECT_NAME Windows)
 #set(PROJECT_INCLUDE "${PROJECT_DIR}/Engine/Platform/Win/main.h")
-set(PROJECT_SOURCE "${PROJECT_DIR}/Engine/Platform/Win/main.cpp")
+#set(PROJECT_SOURCE "${PROJECT_DIR}/Engine/Platform/Win/main.cpp")
+
+set(PROJECT_DIR_FILES "${PROJECT_DIR}/Engine/Platform/Win")
+FILE(GLOB_RECURSE PROJECT_INCLUDE ${PROJECT_DIR_FILES}/*.h)
+FILE(GLOB_RECURSE PROJECT_SOURCE ${PROJECT_DIR_FILES}/*.cpp)
+source_group(TREE ${PROJECT_DIR_FILES} TREE PREFIX "" FILES ${PROJECT_INCLUDE} ${PROJECT_SOURCE})
 
 # defines
 add_definitions(-DWIN_PLATFORM)
@@ -22,6 +27,12 @@ set(ENGINE_SOURCE "${ENGINE_DIR}/Source")
 set(GAME_NAME Game)
 set(GAME_DIR "${PROJECT_DIR}/${GAME_NAME}")
 set(GAME_SOURCE "${GAME_DIR}/Source")
+
+# Resources
+set(RESOURCES_NAME Resources)
+set(RESOURCES_DIR "${PROJECT_DIR}/${RESOURCES_NAME}")
+set(RESOURCES_SOURCE_FILES "${RESOURCES_DIR}/Files")
+set(RESOURCES_SOURCE "${RESOURCES_DIR}")
 
 # ThirdParty
 #glm
@@ -81,6 +92,9 @@ include_directories(${GAME_SOURCE})
 add_subdirectory(${GAME_DIR})
 target_link_libraries(${PROJECT_NAME} ${GAME_NAME})
 link_directories(${GAME_DIR})
+
+#Resources
+add_subdirectory(${RESOURCES_DIR})
 
 #glm
 include_directories(${GLM_INCLUDES})
