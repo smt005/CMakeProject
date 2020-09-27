@@ -1,4 +1,4 @@
 @echo off
 mkdir "../build/Win"
 cd "../build/Win"
-cmake ../../Source
+cmake -G "Visual Studio 15 2017" ../../Source
