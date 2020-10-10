@@ -84,6 +84,12 @@ set(PHYSX_INCLUDES_PXSHARED "${PHYSX_DIR}/pxshared/include")
 set(PHYSX_CMAKE_DIR "${PHYSX_DIR}/physx/compiler/public")
 set(PHYSX_LIB "${PHYSX_DIR}/physx/bin")
 
+# FreeType2
+set(FREETYPE2_NAME freetype)
+set(FREETYPE2_DIR "${ENGINE_DIR}/ThirdParty/freetype2")
+set(FREETYPE2_INCLUDES "${FREETYPE2_DIR}/include")
+set(GLFW_LIB "${PROJECT_DIR}/../build/Win/Engine/ThirdParty/freetype2")
+
 # Создание
 
 project(${PROJECT_NAME})
@@ -137,7 +143,6 @@ target_link_libraries(${PROJECT_NAME} "${FREEIMAGE_LIB}/${FREEIMAGE_NAME}.lib")
 file(COPY "${FREEIMAGE_LIB}/${FREEIMAGE_NAME}.dll" DESTINATION Debug)
 
 # PhysX 4.1
-
 ## I want to use the C++17 standard, forsooth!
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -163,3 +168,9 @@ add_subdirectory(${PHYSX_ROOT_DIR}/compiler/public externals/physx)
 target_link_libraries(${PROJECT_NAME} ${PHYSX_NAME})
 target_link_libraries(${PROJECT_NAME} ${PHYSX_COOKING})
 target_link_libraries(${PROJECT_NAME} ${PHYSX_EXTENTIONS})
+
+# FreeType2
+include_directories(${FREETYPE2_INCLUDES})
+link_directories("D:/CMake/CMakeProject/build/Win/Engine/ThirdParty/freetype2/debug")
+add_subdirectory(${FREETYPE2_DIR})
+target_link_libraries(${PROJECT_NAME} ${FREETYPE2_NAME})
