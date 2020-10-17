@@ -92,9 +92,13 @@ set(GLFW_LIB "${PROJECT_DIR}/../build/Win/Engine/ThirdParty/freetype2")
 
 # Создание
 
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_DIR}/../Windows_build)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_DIR}/../Windows_build)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_DIR}/../Windows_build)
+
 project(${PROJECT_NAME})
-#add_executable(${PROJECT_NAME} ${PROJECT_INCLUDE} ${PROJECT_SOURCE})
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCE})
+set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${PROJECT_NAME})
 
 # Библиотеки
 
@@ -133,14 +137,14 @@ target_link_libraries(${PROJECT_NAME} ${GLFW_NAME})
 include_directories(${GLEW_INCLUDES})
 link_directories(${GLEW_LIB})
 add_subdirectory(${GLEW_CMAKE_DIR})
-set_target_properties( ${GLEW_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${PROJECT_DIR}/../build/Win")
+set_target_properties( ${GLEW_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${PROJECT_DIR}/../Windows_build")
 target_link_libraries(${PROJECT_NAME} ${GLEW_NAME})
 
 # FreeImage
 include_directories(${FREEIMAGE_INCLUDES})
 link_directories(${FREEIMAGE_LIB})
 target_link_libraries(${PROJECT_NAME} "${FREEIMAGE_LIB}/${FREEIMAGE_NAME}.lib")
-file(COPY "${FREEIMAGE_LIB}/${FREEIMAGE_NAME}.dll" DESTINATION Debug)
+file(COPY "${FREEIMAGE_LIB}/${FREEIMAGE_NAME}.dll" DESTINATION ${PROJECT_DIR}/../Windows_build/debug)
 
 # PhysX 4.1
 ## I want to use the C++17 standard, forsooth!
