@@ -10,3 +10,6 @@
 [submodule "Source/Brain"]
 	path = Source/Brain
 	url = https://github.com/smt005/CMakeProject_Brain
+[submodule "Source/GUI"]
+	path = Source/GUI
+	url = https://github.com/smt005/CMakeProject_GUI
