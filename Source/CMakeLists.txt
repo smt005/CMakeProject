@@ -29,11 +29,6 @@ set(GAME_NAME Game)
 set(GAME_DIR "${PROJECT_DIR}/${GAME_NAME}")
 set(GAME_SOURCE "${GAME_DIR}/Source")
 
-# Brain
-set(BRAIN_NAME Brain)
-set(BRAIN_DIR "${PROJECT_DIR}/${BRAIN_NAME}")
-set(BRAIN_SOURCE "${BRAIN_DIR}/Source")
-
 # Resources
 set(RESOURCES_NAME Resources)
 set(RESOURCES_DIR "${PROJECT_DIR}/${RESOURCES_NAME}")
@@ -118,12 +113,6 @@ include_directories(${GAME_SOURCE})
 add_subdirectory(${GAME_DIR})
 target_link_libraries(${PROJECT_NAME} ${GAME_NAME})
 link_directories(${GAME_DIR})
-
-# Brain
-include_directories(${BRAIN_SOURCE})
-add_subdirectory(${BRAIN_DIR})
-target_link_libraries(${PROJECT_NAME} ${BRAIN_NAME})
-link_directories(${BRAIN_DIR})
 
 #Resources
 add_subdirectory(${RESOURCES_DIR})
